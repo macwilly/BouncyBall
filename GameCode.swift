@@ -32,16 +32,20 @@ of a function.
 func setup() {
     circle.position = Point(x: 250, y: 400)
     circle.hasPhysics = true
+    circle.fillColor = .blue
     //This will add the object to the screen
     scene.add(circle)
     
     barrier.position = Point(x: 200, y: 150)
     barrier.hasPhysics = true
     barrier.isImmobile = true
+    barrier.fillColor = .yellow
     scene.add(barrier)
     
     //can do a calculation as a variable for Point
     funnel.position = Point(x: 200, y: scene.height - 25)
+    //started as black but I wanted to actually set the color
+    funnel.fillColor = .black
     scene.add(funnel)
     
     //page 229 on how you are able to call the dropBall function without the ()
