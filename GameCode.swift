@@ -1,5 +1,5 @@
 import Foundation
-let circle = OvalShape(width: 40, height: 40)
+let ball = OvalShape(width: 40, height: 40)
 let barrierWidth = 300.0
 let barrierHeight = 25.0
 let barrierPoints = [
@@ -31,11 +31,11 @@ of a function.
 
 fileprivate func setupBall() {
     
-    circle.position = Point(x: 250, y: 400)
-    circle.hasPhysics = true
-    circle.fillColor = .blue
+    ball.position = Point(x: 250, y: 400)
+    ball.hasPhysics = true
+    ball.fillColor = .blue
     //This will add the object to the screen
-    scene.add(circle)
+    scene.add(ball)
 }
 
 fileprivate func setupBarrier() {
@@ -48,7 +48,6 @@ fileprivate func setupBarrier() {
 }
 
 fileprivate func setupFunnel() {
-    //Add funnel to scene
     //can do a calculation as a variable for Point
     funnel.position = Point(x: 200, y: scene.height - 25)
     //started as black but I wanted to actually set the color
@@ -61,7 +60,7 @@ func setup() {
     setupBall()
     // Add barrier to scene
     setupBarrier()
-    
+    //Add funnel to scene
     setupFunnel()
     
     //page 229 on how you are able to call the dropBall function without the ()
@@ -69,5 +68,5 @@ func setup() {
 }
 
 func dropBall(){
-    circle.position = funnel.position
+    ball.position = funnel.position
 }
