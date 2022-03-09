@@ -14,5 +14,6 @@ of a function.
 
 func setup() {
     circle.position = Point(x: 250, y: 400)
+    circle.hasPhysics = true
     scene.add(circle)
 }
