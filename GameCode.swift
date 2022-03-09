@@ -38,15 +38,19 @@ fileprivate func setupBall() {
     scene.add(circle)
 }
 
-func setup() {
-    setupBall()
-    
+fileprivate func setupBarrier() {
     // Add barrier to scene
     barrier.position = Point(x: 200, y: 150)
     barrier.hasPhysics = true
     barrier.isImmobile = true
     barrier.fillColor = .yellow
     scene.add(barrier)
+}
+
+func setup() {
+    setupBall()
+    
+    setupBarrier()
     
     //Add funnel to scene
     //can do a calculation as a variable for Point
