@@ -99,4 +99,5 @@ func setup() {
 
 func dropBall(){
     ball.position = funnel.position
+    ball.stopAllMotion()
 }
