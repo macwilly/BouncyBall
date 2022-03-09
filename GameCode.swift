@@ -29,13 +29,17 @@ for example if statements and for loops, at the top level; they have to be writt
 of a function.
 */
 
-func setup() {
+fileprivate func setupBall() {
     // Add circle to scene
     circle.position = Point(x: 250, y: 400)
     circle.hasPhysics = true
     circle.fillColor = .blue
     //This will add the object to the screen
     scene.add(circle)
+}
+
+func setup() {
+    setupBall()
     
     // Add barrier to scene
     barrier.position = Point(x: 200, y: 150)
