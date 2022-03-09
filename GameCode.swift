@@ -8,7 +8,7 @@ let barrierPoints = [
     Point(x: barrierWidth, y: barrierHeight),
     Point(x: barrierWidth, y: 0)
 ]
-
+//PolygonShape takes an array op points to draw the object
 let barrier = PolygonShape(points: barrierPoints)
 
 /*
@@ -24,6 +24,7 @@ of a function.
 func setup() {
     circle.position = Point(x: 250, y: 400)
     circle.hasPhysics = true
+    //This will add the object to the screen
     scene.add(circle)
     barrier.position = Point(x: 200, y: 150)
     barrier.hasPhysics = true
