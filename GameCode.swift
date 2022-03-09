@@ -44,6 +44,7 @@ func setup() {
     funnel.position = Point(x: 200, y: scene.height - 25)
     scene.add(funnel)
     
+    //page 229 on how you are able to call the dropBall function without the ()
     funnel.onTapped = dropBall
 }
 
