@@ -11,6 +11,14 @@ let barrierPoints = [
 //PolygonShape takes an array op points to draw the object
 let barrier = PolygonShape(points: barrierPoints)
 
+let funnelPoints = [
+    Point(x:0, y:50),
+    Point(x:80, y:50),
+    Point(x:60, y:0),
+    Point(x:20, y:0)
+]
+
+let funnel = PolygonShape(points: funnelPoints)
 /*
 The setup() function is called once when the app launches. Without it, your app won't compile.
 Use it to set up and start your app.
@@ -26,8 +34,14 @@ func setup() {
     circle.hasPhysics = true
     //This will add the object to the screen
     scene.add(circle)
+    
     barrier.position = Point(x: 200, y: 150)
     barrier.hasPhysics = true
     barrier.isImmobile = true
     scene.add(barrier)
+    
+    //can do a calculation as a variable for Point
+    funnel.position = Point(x: 200, y: scene.height - 25)
+    scene.add(funnel)
+    
 }
