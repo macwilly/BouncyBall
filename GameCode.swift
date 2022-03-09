@@ -43,6 +43,7 @@ fileprivate func setupBall() {
     ball.position = Point(x: 250, y: 400)
     ball.hasPhysics = true
     ball.fillColor = .blue
+    ball.onCollision = ballCollided(with:)
     //This will add the object to the screen
     scene.add(ball)
 }
@@ -62,6 +63,8 @@ fileprivate func setupFunnel() {
     //started as black but I wanted to actually set the color
     funnel.fillColor = .black
     scene.add(funnel)
+    //page 229 on how you are able to call the dropBall function without the ()
+    funnel.onTapped = dropBall
 }
 
 fileprivate func setupTarget() {
@@ -72,6 +75,11 @@ fileprivate func setupTarget() {
     target.fillColor = .red
     
     scene.add(target)
+}
+
+// Handles collisions between the ball and the targets.
+func ballCollided(with otherShape: Shape){
+    otherShape.fillColor = .green
 }
 
 func setup() {
@@ -85,8 +93,7 @@ func setup() {
     //adding a target
     setupTarget()
     
-    //page 229 on how you are able to call the dropBall function without the ()
-    funnel.onTapped = dropBall
+    
 }
 
 func dropBall(){
