@@ -30,7 +30,7 @@ of a function.
 */
 
 fileprivate func setupBall() {
-    // Add circle to scene
+    
     circle.position = Point(x: 250, y: 400)
     circle.hasPhysics = true
     circle.fillColor = .blue
@@ -39,7 +39,7 @@ fileprivate func setupBall() {
 }
 
 fileprivate func setupBarrier() {
-    // Add barrier to scene
+    
     barrier.position = Point(x: 200, y: 150)
     barrier.hasPhysics = true
     barrier.isImmobile = true
@@ -47,17 +47,22 @@ fileprivate func setupBarrier() {
     scene.add(barrier)
 }
 
-func setup() {
-    setupBall()
-    
-    setupBarrier()
-    
+fileprivate func setupFunnel() {
     //Add funnel to scene
     //can do a calculation as a variable for Point
     funnel.position = Point(x: 200, y: scene.height - 25)
     //started as black but I wanted to actually set the color
     funnel.fillColor = .black
     scene.add(funnel)
+}
+
+func setup() {
+    // Add circle to scene
+    setupBall()
+    // Add barrier to scene
+    setupBarrier()
+    
+    setupFunnel()
     
     //page 229 on how you are able to call the dropBall function without the ()
     funnel.onTapped = dropBall
