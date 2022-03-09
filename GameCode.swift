@@ -44,8 +44,9 @@ fileprivate func setupBall() {
     ball.hasPhysics = true
     ball.fillColor = .blue
     ball.isDraggable = false
+    scene.trackShape(ball)
     ball.onCollision = ballCollided(with:)
-    
+    ball.onExitedScene = ballExitedScene
     //This will add the object to the screen
     scene.add(ball)
 }
@@ -87,6 +88,17 @@ func ballCollided(with otherShape: Shape){
     otherShape.fillColor = .green
 }
 
+func dropBall(){
+    ball.position = funnel.position
+    ball.stopAllMotion()
+    barrier.isDraggable = false
+}
+
+
+func ballExitedScene() {
+    barrier.isDraggable = true
+}
+
 func setup() {
     // Add circle to scene
     setupBall()
@@ -101,7 +113,3 @@ func setup() {
     
 }
 
-func dropBall(){
-    ball.position = funnel.position
-    ball.stopAllMotion()
-}
