@@ -1,5 +1,5 @@
 import Foundation
-let circle = OvalShape(width: 150, height: 150)
+let circle = OvalShape(width: 40, height: 40)
 let barrierWidth = 300.0
 let barrierHeight = 25.0
 let barrierPoints = [
@@ -30,18 +30,21 @@ of a function.
 */
 
 func setup() {
+    // Add circle to scene
     circle.position = Point(x: 250, y: 400)
     circle.hasPhysics = true
     circle.fillColor = .blue
     //This will add the object to the screen
     scene.add(circle)
     
+    // Add barrier to scene
     barrier.position = Point(x: 200, y: 150)
     barrier.hasPhysics = true
     barrier.isImmobile = true
     barrier.fillColor = .yellow
     scene.add(barrier)
     
+    //Add funnel to scene
     //can do a calculation as a variable for Point
     funnel.position = Point(x: 200, y: scene.height - 25)
     //started as black but I wanted to actually set the color
