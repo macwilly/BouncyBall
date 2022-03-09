@@ -73,12 +73,13 @@ fileprivate func setupTarget() {
     target.isImmobile = true
     target.isImpermeable = false
     target.fillColor = .red
-    
+    target.name = "target"
     scene.add(target)
 }
 
 // Handles collisions between the ball and the targets.
 func ballCollided(with otherShape: Shape){
+    if otherShape.name != "target" { return }
     otherShape.fillColor = .green
 }
 
