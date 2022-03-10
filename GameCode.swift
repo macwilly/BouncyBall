@@ -47,9 +47,10 @@ fileprivate func setupBall() {
     ball.bounciness = 0.6
     
     ball.onCollision = ballCollided(with:)
+    scene.trackShape(ball)
     ball.onExitedScene = ballExitedScene
     ball.onTapped = resetGame
-    scene.trackShape(ball)
+    
     //This will add the object to the screen
     scene.add(ball)
 }
@@ -100,6 +101,7 @@ func dropBall(){
 
 
 func ballExitedScene() {
+    resetGame()
     barrier.isDraggable = true
 }
 
