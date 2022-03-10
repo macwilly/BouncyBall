@@ -38,16 +38,15 @@ for example if statements and for loops, at the top level; they have to be writt
 of a function.
 */
 
-fileprivate func setupBall() {
+func setupBall() {
     
+    scene.trackShape(ball)
     ball.position = Point(x: 250, y: 400)
     ball.hasPhysics = true
     ball.fillColor = .blue
     ball.isDraggable = false
     ball.bounciness = 0.6
-    
     ball.onCollision = ballCollided(with:)
-    scene.trackShape(ball)
     ball.onExitedScene = ballExitedScene
     ball.onTapped = resetGame
     
@@ -55,8 +54,8 @@ fileprivate func setupBall() {
     scene.add(ball)
 }
 
-fileprivate func setupBarrier() {
-    
+func setupBarrier() {
+    barrier.isDraggable = true
     barrier.position = Point(x: 200, y: 150)
     barrier.hasPhysics = true
     barrier.isImmobile = true
@@ -65,7 +64,7 @@ fileprivate func setupBarrier() {
     scene.add(barrier)
 }
 
-fileprivate func setupFunnel() {
+func setupFunnel() {
     //can do a calculation as a variable for Point
     funnel.position = Point(x: 200, y: scene.height - 25)
     //started as black but I wanted to actually set the color
@@ -76,7 +75,7 @@ fileprivate func setupFunnel() {
     funnel.onTapped = dropBall
 }
 
-fileprivate func setupTarget() {
+func setupTarget() {
     target.position = Point(x: 200, y: 400)
     target.hasPhysics = true
     target.isImmobile = true
@@ -97,11 +96,13 @@ func dropBall(){
     ball.position = funnel.position
     ball.stopAllMotion()
     barrier.isDraggable = false
+    print("cannot move barrier")
 }
 
 
 func ballExitedScene() {
-    resetGame()
+//    resetGames()
+    print("The ball has exited the scene")
     barrier.isDraggable = true
 }
 
