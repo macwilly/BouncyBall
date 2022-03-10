@@ -40,7 +40,8 @@ of a function.
 
 func setupBall() {
     
-    scene.trackShape(ball)
+    
+    scene.add(ball)
     ball.position = Point(x: 250, y: 400)
     ball.hasPhysics = true
     ball.fillColor = .blue
@@ -49,9 +50,9 @@ func setupBall() {
     ball.onCollision = ballCollided(with:)
     ball.onExitedScene = ballExitedScene
     ball.onTapped = resetGame
-    
+    scene.trackShape(ball)
     //This will add the object to the screen
-    scene.add(ball)
+    
 }
 
 func setupBarrier() {
@@ -96,13 +97,11 @@ func dropBall(){
     ball.position = funnel.position
     ball.stopAllMotion()
     barrier.isDraggable = false
-    print("cannot move barrier")
 }
 
 
 func ballExitedScene() {
 //    resetGames()
-    print("The ball has exited the scene")
     barrier.isDraggable = true
 }
 
