@@ -77,11 +77,11 @@ func setupFunnel() {
 }
 
 func setupTarget() {
-    target.position = Point(x: 200, y: 400)
+    target.position = Point(x: 100.49991607666016, y: 478.49969482421875)
     target.hasPhysics = true
     target.isImmobile = true
     target.isImpermeable = false
-//    target.isDraggable = false
+    target.isDraggable = false
     target.fillColor = .red
     target.name = "target"
     scene.add(target)
