@@ -44,9 +44,11 @@ fileprivate func setupBall() {
     ball.hasPhysics = true
     ball.fillColor = .blue
     ball.isDraggable = false
+    ball.bounciness = 0.6
     scene.trackShape(ball)
     ball.onCollision = ballCollided(with:)
     ball.onExitedScene = ballExitedScene
+    ball.onTapped = resetGame
     //This will add the object to the screen
     scene.add(ball)
 }
@@ -57,6 +59,7 @@ fileprivate func setupBarrier() {
     barrier.hasPhysics = true
     barrier.isImmobile = true
     barrier.fillColor = .yellow
+    barrier.angle = 0.1
     scene.add(barrier)
 }
 
@@ -99,6 +102,11 @@ func ballExitedScene() {
     barrier.isDraggable = true
 }
 
+func resetGame() {
+    barrier.isDraggable = true
+    ball.position = Point(x: 0, y: -80)
+}
+
 func setup() {
     // Add circle to scene
     setupBall()
@@ -109,7 +117,7 @@ func setup() {
     
     //adding a target
     setupTarget()
-    
+    resetGame()
     
 }
 
