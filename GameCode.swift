@@ -1,6 +1,6 @@
 import Foundation
 let ball = OvalShape(width: 40, height: 40)
-let barrierWidth = 300.0
+let barrierWidth = 100.0
 let barrierHeight = 25.0
 let barrierPoints = [
     Point(x:0, y:0),
@@ -45,10 +45,11 @@ fileprivate func setupBall() {
     ball.fillColor = .blue
     ball.isDraggable = false
     ball.bounciness = 0.6
-    scene.trackShape(ball)
+    
     ball.onCollision = ballCollided(with:)
     ball.onExitedScene = ballExitedScene
     ball.onTapped = resetGame
+    scene.trackShape(ball)
     //This will add the object to the screen
     scene.add(ball)
 }
@@ -58,7 +59,7 @@ fileprivate func setupBarrier() {
     barrier.position = Point(x: 200, y: 150)
     barrier.hasPhysics = true
     barrier.isImmobile = true
-    barrier.fillColor = .yellow
+    barrier.fillColor = .black
     barrier.angle = 0.1
     scene.add(barrier)
 }
@@ -79,7 +80,7 @@ fileprivate func setupTarget() {
     target.hasPhysics = true
     target.isImmobile = true
     target.isImpermeable = false
-    target.isDraggable = false
+//    target.isDraggable = false
     target.fillColor = .red
     target.name = "target"
     scene.add(target)
@@ -107,6 +108,10 @@ func resetGame() {
     ball.position = Point(x: 0, y: -80)
 }
 
+func printPosition(of shape: Shape) {
+    print(shape.position)
+}
+
 func setup() {
     // Add circle to scene
     setupBall()
@@ -117,6 +122,8 @@ func setup() {
     
     //adding a target
     setupTarget()
+    
+    scene.onShapeMoved = printPosition(of:)
     resetGame()
     
 }
