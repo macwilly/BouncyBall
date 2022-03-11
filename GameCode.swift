@@ -108,12 +108,26 @@ func dropBall(){
         barrier.isDraggable = false
     }
     
+    for target in targets {
+        target.fillColor = .red
+    }
+    
 }
 
 
 func ballExitedScene() {
+    var hitTargets = 0
     for barrier in barriers {
         barrier.isDraggable = true
+    }
+    for target in targets {
+        if target.fillColor == .green {
+            hitTargets += 1
+        }
+    }
+    
+    if hitTargets == targets.count {
+        print("Won game!")
     }
     
 }
@@ -122,10 +136,7 @@ func resetGame() {
     for barrier in barriers {
         barrier.isDraggable = true
     }
-    
-    for target in targets{
-        target.fillColor = .red
-    }
+
     
     ball.position = Point(x: 0, y: -80)
 }
