@@ -88,7 +88,7 @@ func addTarget(at position: Point) {
     target.hasPhysics = true
     target.isImmobile = true
     target.isImpermeable = false
-    //target.isDraggable = false
+    target.isDraggable = false
     target.fillColor = .red
     target.name = "target"
     scene.add(target)
