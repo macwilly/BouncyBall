@@ -1,15 +1,7 @@
 import Foundation
 let ball = OvalShape(width: 40, height: 40)
-let barrierWidth = 100.0
-let barrierHeight = 25.0
-let barrierPoints = [
-    Point(x:0, y:0),
-    Point(x: 0, y: barrierHeight),
-    Point(x: barrierWidth, y: barrierHeight),
-    Point(x: barrierWidth, y: 0)
-]
-//PolygonShape takes an array op points to draw the object
-let barrier = PolygonShape(points: barrierPoints)
+
+var barriers: [Shape] = []
 
 let funnelPoints = [
     Point(x:0, y:50),
@@ -55,13 +47,24 @@ func setupBall() {
     
 }
 
-func setupBarrier() {
+func addBarrier(at position: Point, width: Double, height: Double, angle: Double) {
+    let barrierPoints = [
+        Point(x: 0, y: 0),
+        Point(x: 0, y: height),
+        Point(x: width, y: height),
+        Point(x: width, y: 0)
+    ]
+    
+    let barrier = PolygonShape(points: barrierPoints)
+    
+    barriers.append(barrier)
+    
     barrier.isDraggable = true
-    barrier.position = Point(x: 200, y: 150)
+    barrier.position = position
     barrier.hasPhysics = true
     barrier.isImmobile = true
     barrier.fillColor = .black
-    barrier.angle = 0.1
+    barrier.angle = angle
     scene.add(barrier)
 }
 
@@ -96,17 +99,26 @@ func ballCollided(with otherShape: Shape){
 func dropBall(){
     ball.position = funnel.position
     ball.stopAllMotion()
-    barrier.isDraggable = false
+    
+    for barrier in barriers {
+        barrier.isDraggable = false
+    }
+    
 }
 
 
 func ballExitedScene() {
-//    resetGames()
-    barrier.isDraggable = true
+    for barrier in barriers {
+        barrier.isDraggable = true
+    }
+    
 }
 
 func resetGame() {
-    barrier.isDraggable = true
+    for barrier in barriers {
+        barrier.isDraggable = true
+    }
+    
     ball.position = Point(x: 0, y: -80)
 }
 
@@ -118,7 +130,7 @@ func setup() {
     // Add circle to scene
     setupBall()
     // Add barrier to scene
-    setupBarrier()
+    addBarrier(at: Point(x: 200, y: 150), width: 80, height: 25, angle: 0.1)
     //Add funnel to scene
     setupFunnel()
     
