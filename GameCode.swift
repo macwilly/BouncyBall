@@ -2,6 +2,7 @@ import Foundation
 let ball = OvalShape(width: 40, height: 40)
 
 var barriers: [Shape] = []
+var targets: [Shape] = []
 
 let funnelPoints = [
     Point(x:0, y:50),
@@ -12,14 +13,6 @@ let funnelPoints = [
 
 let funnel = PolygonShape(points: funnelPoints)
 
-let targetPoints = [
-    Point(x:10, y:0),
-    Point(x:0, y:10),
-    Point(x:10, y:20),
-    Point(x:20, y:10)
-]
-
-let target = PolygonShape(points: targetPoints)
 /*
 The setup() function is called once when the app launches. Without it, your app won't compile.
 Use it to set up and start your app.
@@ -79,12 +72,23 @@ func setupFunnel() {
     funnel.onTapped = dropBall
 }
 
-func setupTarget() {
-    target.position = Point(x: 100.49991607666016, y: 478.49969482421875)
+func addTarget(at position: Point) {
+    let targetPoints = [
+        Point(x:10, y:0),
+        Point(x:0, y:10),
+        Point(x:10, y:20),
+        Point(x:20, y:10)
+    ]
+    
+    var target = PolygonShape(points: targetPoints)
+    
+    targets.append(target)
+    
+    target.position = position
     target.hasPhysics = true
     target.isImmobile = true
     target.isImpermeable = false
-    target.isDraggable = false
+    //target.isDraggable = false
     target.fillColor = .red
     target.name = "target"
     scene.add(target)
@@ -119,6 +123,10 @@ func resetGame() {
         barrier.isDraggable = true
     }
     
+    for target in targets{
+        target.fillColor = .red
+    }
+    
     ball.position = Point(x: 0, y: -80)
 }
 
@@ -131,12 +139,16 @@ func setup() {
     setupBall()
     // Add barrier to scene
     addBarrier(at: Point(x: 200, y: 150), width: 80, height: 25, angle: 0.1)
+    addBarrier(at: Point(x: 200, y: 50), width: 50, height: 25, angle: -0.2)
+    addBarrier(at: Point(x: 100, y: 50), width: 50, height: 25, angle: 0.5)
     //Add funnel to scene
     setupFunnel()
     
     //adding a target
-    setupTarget()
-    
+    addTarget(at: Point(x: 100.49991607666016, y: 478.49969482421875))
+    addTarget(at: Point(x: 155.999, y: 261.993))
+    addTarget(at: Point(x: 35.999, y: 85.499))
+
     scene.onShapeMoved = printPosition(of:)
     resetGame()
     
